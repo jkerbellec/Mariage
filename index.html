@@ -130,6 +130,7 @@
             display: block; width: 3px;
             background: #c9a84c; border-radius: 2px;
             animation: bar 0.6s ease-in-out infinite alternate;
+            animation-play-state: paused;
         }
         .music-bars span:nth-child(1) { height: 8px;  animation-delay: 0s; }
         .music-bars span:nth-child(2) { height: 16px; animation-delay: 0.2s; }
@@ -140,7 +141,7 @@
             from { transform: scaleY(0.4); opacity: 0.6; }
             to   { transform: scaleY(1);   opacity: 1; }
         }
-        .music-bars.paused span { animation-play-state: paused; }
+        .music-bars.playing span { animation-play-state: running; }
 
         .countdown {
             display: flex;
@@ -182,6 +183,7 @@
             padding: clamp(24px, 6vw, 40px);
             box-shadow: 0 4px 30px rgba(201, 168, 76, 0.08);
             margin-bottom: 40px;
+            overflow: hidden;
         }
 
         .section-title {
@@ -334,83 +336,82 @@
             line-height: 1.6;
         }
 
-        .lieux-grid {
+        /* LIEUX GRID 3 COLONNES — corrigé */
+        .lieux-grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
         }
-        @media (max-width: 480px) {
-            .lieux-grid { grid-template-columns: 1fr; }
+        @media (max-width: 600px) {
+            .lieux-grid-3 { grid-template-columns: 1fr; }
         }
         .lieu-card {
             background: #faf8f5;
             border: 1px solid rgba(201, 168, 76, 0.2);
             border-radius: 12px;
-            padding: 20px;
+            padding: 16px 12px;
             text-align: center;
             transition: border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .lieu-card:hover { border-color: rgba(201, 168, 76, 0.5); }
         .lieu-icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: rgba(201, 168, 76, 0.1);
             border: 1px solid rgba(201, 168, 76, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
+            margin: 0 auto 10px;
             color: #c9a84c;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
         .lieu-type {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
             color: #c9a84c;
             text-transform: uppercase;
             margin-bottom: 6px;
+            line-height: 1.4;
         }
         .lieu-name {
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             color: #1a1a1a;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             margin-bottom: 6px;
+            line-height: 1.4;
         }
         .lieu-adresse {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: #aaa;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
-            margin-bottom: 14px;
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
         .lieu-map-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
+            gap: 5px;
+            padding: 7px 12px;
             border-radius: 50px;
             border: 1px solid rgba(201, 168, 76, 0.4);
             background: transparent;
             color: #c9a84c;
             font-family: inherit;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
+            margin-top: auto;
         }
         .lieu-map-btn:hover { background: rgba(201, 168, 76, 0.1); }
-
-        .lieux-grid-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 14px;
-        }
-        @media (max-width: 500px) {
-            .lieux-grid-3 { grid-template-columns: 1fr; }
-        }
 
         .progress-section {
             z-index: 1;
@@ -496,8 +497,9 @@
     Musique
 </button>
 
+<!-- NOM DU FICHIER CORRIGÉ : musique.mp3 -->
 <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+    <source src="musique.mp3" type="audio/mpeg">
 </audio>
 
 <div class="header">
@@ -513,9 +515,9 @@
     </div>
 </div>
 
-<!-- PHOTO -->
-<div class="photo-section" style="z-index:1;">
-    <img src="photo.jpg" alt="Mélina & Jordan" />
+<!-- PHOTO — NOM DU FICHIER CORRIGÉ : photo.jpeg -->
+<div class="photo-section">
+    <img src="photo.jpeg" alt="Mélina & Jordan" />
     <div class="photo-overlay">
         <span>Mélina & Jordan · 26 Septembre 2026</span>
     </div>
@@ -670,17 +672,17 @@
         container.appendChild(p);
     }
 
-    // Musique
+    // Musique — démarre UNIQUEMENT au clic
     let playing = false;
     function toggleMusic() {
         const audio = document.getElementById('bgMusic');
         const bars = document.getElementById('musicBars');
         if (playing) {
             audio.pause();
-            bars.classList.add('paused');
+            bars.classList.remove('playing');
         } else {
             audio.play().catch(() => {});
-            bars.classList.remove('paused');
+            bars.classList.add('playing');
         }
         playing = !playing;
     }
