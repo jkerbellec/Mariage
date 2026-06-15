@@ -37,7 +37,13 @@
             100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
-        .header { text-align: center; margin-bottom: 40px; z-index: 1; padding: 0 10px; }
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            z-index: 1;
+            padding: 0 10px;
+        }
         .header .et {
             font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: normal;
@@ -52,7 +58,10 @@
             gap: 10px;
             flex-wrap: wrap;
         }
-        .header .et i { font-size: clamp(1.4rem, 5vw, 2rem); -webkit-text-fill-color: #c9a84c; }
+        .header .et i {
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            -webkit-text-fill-color: #c9a84c;
+        }
         .header h1 {
             font-size: clamp(0.7rem, 3vw, 1rem);
             font-weight: normal;
@@ -72,7 +81,10 @@
             justify-content: center;
             gap: 8px;
         }
-        .header .date i { color: #c9a84c; -webkit-text-fill-color: #c9a84c; }
+        .header .date i {
+            color: #c9a84c;
+            -webkit-text-fill-color: #c9a84c;
+        }
 
         /* PHOTO */
         .photo-section {
@@ -85,6 +97,8 @@
             border: 1px solid rgba(201, 168, 76, 0.25);
             box-shadow: 0 8px 40px rgba(201, 168, 76, 0.12);
             position: relative;
+            align-self: center;
+            flex-shrink: 0;
         }
         .photo-section img {
             width: 100%;
@@ -107,6 +121,7 @@
             opacity: 0.85;
         }
 
+        /* MUSIQUE */
         .music-btn {
             position: fixed;
             top: 14px; right: 14px;
@@ -143,6 +158,7 @@
         }
         .music-bars.playing span { animation-play-state: running; }
 
+        /* COMPTE À REBOURS */
         .countdown {
             display: flex;
             gap: clamp(8px, 3vw, 30px);
@@ -173,6 +189,7 @@
             margin-top: 6px;
         }
 
+        /* CARDS */
         .card {
             z-index: 1;
             width: 100%;
@@ -208,6 +225,7 @@
             margin-bottom: 28px;
         }
 
+        /* RSVP */
         .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .rsvp-btn {
             padding: 13px 22px;
@@ -285,6 +303,7 @@
             margin-top: 20px;
         }
 
+        /* TIMELINE */
         .timeline { display: flex; flex-direction: column; gap: 0; }
         .timeline-item {
             display: flex;
@@ -336,7 +355,7 @@
             line-height: 1.6;
         }
 
-        /* LIEUX GRID 3 COLONNES — corrigé */
+        /* LIEUX */
         .lieux-grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -413,6 +432,7 @@
         }
         .lieu-map-btn:hover { background: rgba(201, 168, 76, 0.1); }
 
+        /* PROGRESSION */
         .progress-section {
             z-index: 1;
             width: 100%;
@@ -473,6 +493,7 @@
             margin-bottom: 4px;
         }
 
+        /* FOOTER */
         .footer {
             z-index: 1;
             text-align: center;
@@ -497,11 +518,11 @@
     Musique
 </button>
 
-<!-- NOM DU FICHIER CORRIGÉ : musique.mp3 -->
 <audio id="bgMusic" loop>
     <source src="musique.mp3" type="audio/mpeg">
 </audio>
 
+<!-- HEADER -->
 <div class="header">
     <div class="et">
         <span>Mélina</span>
@@ -515,7 +536,7 @@
     </div>
 </div>
 
-<!-- PHOTO — NOM DU FICHIER CORRIGÉ : photo.jpeg -->
+<!-- PHOTO -->
 <div class="photo-section">
     <img src="photo.jpeg" alt="Mélina & Jordan" />
     <div class="photo-overlay">
@@ -523,7 +544,7 @@
     </div>
 </div>
 
-<!-- BARRE DE PROGRESSION -->
+<!-- PROGRESSION -->
 <div class="progress-section">
     <div class="progress-title">
         <i class="ph-hourglass-medium"></i>
@@ -672,7 +693,7 @@
         container.appendChild(p);
     }
 
-    // Musique — démarre UNIQUEMENT au clic
+    // Musique
     let playing = false;
     function toggleMusic() {
         const audio = document.getElementById('bgMusic');
