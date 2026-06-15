@@ -16,11 +16,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 40px 16px;
             overflow-x: hidden;
         }
 
-        /* Particules */
+        /* ── PARTICULES ── */
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         .particle {
             position: absolute;
@@ -38,10 +38,10 @@
             100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
-        /* Header */
-        .header { text-align: center; margin-bottom: 50px; z-index: 1; }
+        /* ── HEADER ── */
+        .header { text-align: center; margin-bottom: 40px; z-index: 1; padding: 0 10px; }
         .header .et {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             font-weight: normal;
             letter-spacing: 3px;
             background: linear-gradient(135deg, #c9a84c, #a07830, #c9a84c);
@@ -52,20 +52,21 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
-        .header .et i { font-size: 2rem; -webkit-text-fill-color: #c9a84c; }
+        .header .et i { font-size: clamp(1.4rem, 5vw, 2rem); -webkit-text-fill-color: #c9a84c; }
         .header h1 {
-            font-size: 1rem;
+            font-size: clamp(0.7rem, 3vw, 1rem);
             font-weight: normal;
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: #999;
             -webkit-text-fill-color: #999;
         }
         .header .date {
             color: #999;
-            font-size: 0.85rem;
-            letter-spacing: 6px;
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-top: 12px;
             display: flex;
@@ -73,39 +74,37 @@
             justify-content: center;
             gap: 8px;
         }
-        .header .date i { color: #c9a84c; font-size: 1rem; -webkit-text-fill-color: #c9a84c; }
+        .header .date i { color: #c9a84c; -webkit-text-fill-color: #c9a84c; }
 
-        /* Bouton musique */
+        /* ── BOUTON MUSIQUE ── */
         .music-btn {
             position: fixed;
-            top: 20px; right: 20px;
+            top: 14px; right: 14px;
             z-index: 100;
             background: rgba(201, 168, 76, 0.15);
             border: 1px solid rgba(201, 168, 76, 0.4);
             border-radius: 50px;
-            padding: 10px 18px;
+            padding: 8px 14px;
             color: #c9a84c;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
+            gap: 8px;
+            font-size: 1rem;
             transition: background 0.3s;
             backdrop-filter: blur(6px);
         }
         .music-btn:hover { background: rgba(201, 168, 76, 0.25); }
-        .music-bars { display: flex; align-items: flex-end; gap: 2px; height: 20px; }
+        .music-bars { display: flex; align-items: flex-end; gap: 2px; height: 18px; }
         .music-bars span {
-            display: block;
-            width: 3px;
-            background: #c9a84c;
-            border-radius: 2px;
+            display: block; width: 3px;
+            background: #c9a84c; border-radius: 2px;
             animation: bar 0.6s ease-in-out infinite alternate;
         }
         .music-bars span:nth-child(1) { height: 8px;  animation-delay: 0s; }
         .music-bars span:nth-child(2) { height: 16px; animation-delay: 0.2s; }
         .music-bars span:nth-child(3) { height: 10px; animation-delay: 0.4s; }
-        .music-bars span:nth-child(4) { height: 20px; animation-delay: 0.1s; }
+        .music-bars span:nth-child(4) { height: 18px; animation-delay: 0.1s; }
         .music-bars span:nth-child(5) { height: 6px;  animation-delay: 0.3s; }
         @keyframes bar {
             from { transform: scaleY(0.4); opacity: 0.6; }
@@ -113,88 +112,105 @@
         }
         .music-bars.paused span { animation-play-state: paused; }
 
-        /* Compte à rebours */
+        /* ── COMPTE À REBOURS ── */
         .countdown {
             display: flex;
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: clamp(8px, 3vw, 30px);
+            margin-bottom: 50px;
             z-index: 1;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .countdown-item {
             text-align: center;
             background: rgba(201, 168, 76, 0.08);
             border: 1px solid rgba(201, 168, 76, 0.25);
             border-radius: 12px;
-            padding: 20px 25px;
-            min-width: 80px;
+            padding: clamp(12px, 3vw, 20px) clamp(14px, 4vw, 25px);
+            min-width: clamp(60px, 18vw, 80px);
         }
-        .countdown-item span { display: block; font-size: 2.5rem; color: #c9a84c; font-weight: bold; }
-        .countdown-item p { font-size: 0.7rem; color: #aaa; letter-spacing: 3px; text-transform: uppercase; margin-top: 8px; }
+        .countdown-item span {
+            display: block;
+            font-size: clamp(1.6rem, 6vw, 2.5rem);
+            color: #c9a84c;
+            font-weight: bold;
+        }
+        .countdown-item p {
+            font-size: clamp(0.55rem, 2vw, 0.7rem);
+            color: #aaa;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
 
-        /* RSVP */
-        .rsvp-section {
+        /* ── CARD GÉNÉRIQUE ── */
+        .card {
             z-index: 1;
             width: 100%;
-            max-width: 480px;
+            max-width: 520px;
             background: #fff;
             border: 1px solid rgba(201, 168, 76, 0.2);
             border-radius: 16px;
-            padding: 40px;
+            padding: clamp(24px, 6vw, 40px);
             box-shadow: 0 4px 30px rgba(201, 168, 76, 0.08);
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
+
         .section-title {
             text-align: center;
-            font-size: 0.85rem;
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
             font-weight: normal;
             letter-spacing: 6px;
             text-transform: uppercase;
             color: #c9a84c;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .section-subtitle {
             text-align: center;
             color: #aaa;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
             letter-spacing: 2px;
             margin-bottom: 20px;
         }
-        .rsvp-divider {
-            width: 40px;
+        .gold-divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, #c9a84c, transparent);
-            margin: 0 auto 30px;
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+            margin-bottom: 28px;
         }
-        .rsvp-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        /* ── RSVP ── */
+        .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .rsvp-btn {
-            padding: 14px 28px;
+            padding: 13px 22px;
             border-radius: 6px;
             border: 1px solid rgba(201, 168, 76, 0.5);
             background: transparent;
             color: #c9a84c;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
+            font-family: inherit;
+            font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+            letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s;
+            flex: 1;
+            min-width: 140px;
         }
         .rsvp-btn:hover { background: rgba(201, 168, 76, 0.1); }
         .rsvp-btn-non { border-color: #ddd; color: #aaa; }
         .rsvp-input {
             width: 100%;
-            padding: 14px;
-            margin-bottom: 12px;
+            padding: 13px;
+            margin-bottom: 10px;
             background: #f8f5f0;
             border: 1px solid rgba(201, 168, 76, 0.2);
             border-radius: 6px;
             color: #1a1a1a;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-family: inherit;
             font-size: 0.85rem;
             letter-spacing: 1px;
             outline: none;
             transition: border 0.3s;
-            margin-top: 15px;
+            margin-top: 12px;
         }
         .rsvp-input:focus { border-color: rgba(201, 168, 76, 0.6); }
         .rsvp-input::placeholder { color: #bbb; }
@@ -205,7 +221,7 @@
             border: none;
             border-radius: 6px;
             color: #fff;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-family: inherit;
             font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -221,7 +237,7 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             color: #aaa;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
+            font-family: inherit;
             font-size: 0.8rem;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -240,18 +256,140 @@
             margin-top: 20px;
         }
 
-        /* ── BARRE DE PROGRESSION JUSQU'AU JOUR J ── */
+        /* ── PROGRAMME ── */
+        .timeline { display: flex; flex-direction: column; gap: 0; }
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            position: relative;
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 42px;
+            width: 1px;
+            height: calc(100% + 4px);
+            background: linear-gradient(to bottom, rgba(201,168,76,0.4), rgba(201,168,76,0.1));
+        }
+        .tl-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c9a84c;
+            font-size: 1.1rem;
+            z-index: 1;
+        }
+        .tl-content { padding-bottom: 28px; flex: 1; }
+        .tl-time {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: #c9a84c;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .tl-title {
+            font-size: clamp(0.85rem, 3vw, 0.95rem);
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .tl-desc {
+            font-size: 0.78rem;
+            color: #aaa;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        /* ── LIEUX ── */
+        .lieux-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 480px) {
+            .lieux-grid { grid-template-columns: 1fr; }
+        }
+        .lieu-card {
+            background: #faf8f5;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        .lieu-card:hover { border-color: rgba(201, 168, 76, 0.5); }
+        .lieu-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: #c9a84c;
+            font-size: 1.3rem;
+        }
+        .lieu-type {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: #c9a84c;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .lieu-name {
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .lieu-adresse {
+            font-size: 0.75rem;
+            color: #aaa;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .lieu-map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(201, 168, 76, 0.4);
+            background: transparent;
+            color: #c9a84c;
+            font-family: inherit;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lieu-map-btn:hover { background: rgba(201, 168, 76, 0.1); }
+
+        /* ── BARRE DE PROGRESSION ── */
         .progress-section {
             z-index: 1;
             width: 100%;
-            max-width: 480px;
-            margin-bottom: 60px;
+            max-width: 520px;
+            margin-bottom: 50px;
             text-align: center;
+            padding: 0 4px;
         }
-
         .progress-title {
-            font-size: 0.8rem;
-            letter-spacing: 5px;
+            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: #c9a84c;
             margin-bottom: 6px;
@@ -260,14 +398,12 @@
             justify-content: center;
             gap: 10px;
         }
-
         .progress-subtitle {
             font-size: 0.78rem;
             color: #bbb;
             letter-spacing: 2px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
-
         .progress-track {
             background: rgba(201, 168, 76, 0.1);
             border: 1px solid rgba(201, 168, 76, 0.2);
@@ -276,7 +412,6 @@
             overflow: hidden;
             margin-bottom: 12px;
         }
-
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #c9a84c, #f5e6c8, #c9a84c);
@@ -285,319 +420,5 @@
             animation: shimmer 2.5s linear infinite;
             transition: width 1.5s ease;
         }
-
         @keyframes shimmer {
-            0%   { background-position: 200% center; }
-            100% { background-position: -200% center; }
-        }
-
-        .progress-pct {
-            font-size: 2rem;
-            color: #c9a84c;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .progress-pct span {
-            font-size: 0.9rem;
-            color: #bbb;
-            letter-spacing: 3px;
-            font-weight: normal;
-        }
-
-        .progress-msg {
-            font-size: 0.78rem;
-            color: #aaa;
-            letter-spacing: 2px;
-            margin-top: 8px;
-            font-style: italic;
-        }
-
-        /* Photo bas de page */
-        .photo-section {
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-            gap: 16px;
-            width: 100%;
-            max-width: 500px;
-        }
-        .gold-line { width: 120px; height: 1px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }
-        .photo-label {
-            color: #c9a84c;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .photo-frame {
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(201, 168, 76, 0.12);
-            width: 100%;
-        }
-        .photo-frame img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
-        .photo-frame img:hover { transform: scale(1.02); }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .header .et     { font-size: 2.2rem; }
-            .header h1      { font-size: 0.85rem; }
-            .countdown      { gap: 12px; }
-            .countdown-item { padding: 15px; min-width: 65px; }
-            .countdown-item span { font-size: 1.8rem; }
-            .photo-section  { max-width: 100%; }
-            .rsvp-buttons   { flex-direction: column; align-items: center; }
-            .rsvp-btn       { width: 100%; text-align: center; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Particules -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Bouton musique -->
-    <button class="music-btn" onclick="toggleMusic()">
-        <i class="ph ph-play" id="musicIcon"></i>
-        <div class="music-bars paused" id="musicBars">
-            <span></span><span></span><span></span><span></span><span></span>
-        </div>
-    </button>
-
-    <audio id="bgMusic" loop>
-        <source src="musique.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Header -->
-    <div class="header">
-        <div class="et">
-            <span>Mélina</span>
-            <i class="ph ph-heart"></i>
-            <span>Jordan</span>
-        </div>
-        <h1>Nous nous marions</h1>
-        <div class="date">
-            <i class="ph ph-calendar-heart"></i>
-            26 Septembre 2026
-        </div>
-    </div>
-
-    <!-- Compte à rebours -->
-    <div class="countdown">
-        <div class="countdown-item"><span id="days">00</span><p>Jours</p></div>
-        <div class="countdown-item"><span id="hours">00</span><p>Heures</p></div>
-        <div class="countdown-item"><span id="minutes">00</span><p>Minutes</p></div>
-        <div class="countdown-item"><span id="seconds">00</span><p>Secondes</p></div>
-    </div>
-
-    <!-- RSVP -->
-    <div class="rsvp-section">
-        <h2 class="section-title">✦ &nbsp; RSVP &nbsp; ✦</h2>
-        <p class="section-subtitle">Serez-vous des nôtres ?</p>
-        <div class="rsvp-divider"></div>
-
-        <div class="rsvp-buttons" id="rsvpButtons">
-            <button class="rsvp-btn" onclick="choixRSVP('oui')">✦ &nbsp; Oui, j'y serai !</button>
-            <button class="rsvp-btn rsvp-btn-non" onclick="choixRSVP('non')">✗ &nbsp; Non, je ne pourrai pas</button>
-        </div>
-
-        <div id="formOui" style="display:none;">
-            <input type="text"   id="rsvpPrenom"        class="rsvp-input" placeholder="Prénom" />
-            <input type="text"   id="rsvpNom"           class="rsvp-input" placeholder="Nom" />
-            <input type="number" id="rsvpAccompagnants" class="rsvp-input" placeholder="Nombre d'accompagnants (0 si seul)" min="0" />
-            <button class="rsvp-submit" onclick="envoyerRSVP()">Confirmer ma présence &nbsp; ✦</button>
-        </div>
-
-        <div id="formNon" style="display:none;">
-            <input type="text" id="rsvpPrenomNon" class="rsvp-input" placeholder="Prénom" />
-            <input type="text" id="rsvpNomNon"    class="rsvp-input" placeholder="Nom" />
-            <button class="rsvp-submit-non" onclick="envoyerRSVPNon()">Confirmer mon absence &nbsp; ✗</button>
-        </div>
-
-        <div class="rsvp-confirm" id="rsvpConfirm"></div>
-    </div>
-
-    <!-- Barre de progression -->
-    <div class="progress-section">
-        <p class="progress-title"><i class="ph ph-heart"></i> Le grand jour approche <i class="ph ph-heart"></i></p>
-        <p class="progress-subtitle">Notre aventure ensemble est déjà bien entamée…</p>
-        <div class="progress-track">
-            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-        </div>
-        <div class="progress-pct" id="progressPct">0% <span>du chemin parcouru</span></div>
-        <p class="progress-msg" id="progressMsg"></p>
-    </div>
-
-    <!-- Photo bas de page -->
-    <div class="photo-section">
-        <div class="gold-line"></div>
-        <p class="photo-label">
-            <i class="ph ph-heart"></i>
-            Mélina &amp; Jordan
-            <i class="ph ph-heart"></i>
-        </p>
-        <div class="photo-frame">
-            <img src="photo.jpeg" alt="Mélina & Jordan" />
-        </div>
-        <div class="gold-line"></div>
-    </div>
-
-    <script>
-        // ── MUSIQUE ────────────────────────────────────────────────────────
-        const audio     = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        const musicBars = document.getElementById('musicBars');
-        let   isPlaying = false;
-
-        function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                musicIcon.className = 'ph ph-play';
-                musicBars.classList.add('paused');
-            } else {
-                audio.play();
-                musicIcon.className = 'ph ph-pause';
-                musicBars.classList.remove('paused');
-            }
-            isPlaying = !isPlaying;
-        }
-
-        // ── RSVP ───────────────────────────────────────────────────────────
-        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwMhwIHP-bUlqEyBdwknsXtXjvPWNi5yTnkM4IzQfCVEVKs-oeOgrQKFzGnRaxEU4FK/exec';
-
-        function choixRSVP(choix) {
-            document.getElementById('formOui').style.display = choix === 'oui' ? 'block' : 'none';
-            document.getElementById('formNon').style.display = choix === 'non' ? 'block' : 'none';
-        }
-
-        function envoyerRSVP() {
-            const prenom         = document.getElementById('rsvpPrenom').value.trim();
-            const nom            = document.getElementById('rsvpNom').value.trim();
-            const accompagnants  = document.getElementById('rsvpAccompagnants').value;
-
-            if (!prenom || !nom) { alert('Merci de renseigner votre prénom et votre nom !'); return; }
-
-            fetch(SHEET_URL, {
-                method: 'POST',
-                body: JSON.stringify({ prenom, nom, presence: 'OUI', accompagnants: accompagnants || 0 })
-            })
-            .then(() => {
-                document.getElementById('rsvpButtons').style.display = 'none';
-                document.getElementById('formOui').style.display     = 'none';
-                const confirm = document.getElementById('rsvpConfirm');
-                confirm.style.display = 'block';
-                confirm.innerHTML = `✦ Merci ${prenom} !<br>Votre présence nous comble de bonheur.<br>À très bientôt ! ✦`;
-            })
-            .catch(() => alert('Une erreur est survenue, veuillez réessayer.'));
-        }
-
-        function envoyerRSVPNon() {
-            const prenom = document.getElementById('rsvpPrenomNon').value.trim();
-            const nom    = document.getElementById('rsvpNomNon').value.trim();
-
-            if (!prenom || !nom) { alert('Merci de renseigner votre prénom et votre nom !'); return; }
-
-            fetch(SHEET_URL, {
-                method: 'POST',
-                body: JSON.stringify({ prenom, nom, presence: 'NON', accompagnants: 0 })
-            })
-            .then(() => {
-                document.getElementById('rsvpButtons').style.display = 'none';
-                document.getElementById('formNon').style.display     = 'none';
-                const confirm = document.getElementById('rsvpConfirm');
-                confirm.style.display = 'block';
-                confirm.innerHTML = `✦ Merci ${prenom}.<br>Nous sommes tristes de ne pas pouvoir vous compter parmi nous.<br>Vous nous manquerez ! ✦`;
-            })
-            .catch(() => alert('Une erreur est survenue, veuillez réessayer.'));
-        }
-
-        // ── COMPTE À REBOURS ───────────────────────────────────────────────
-        function updateCountdown() {
-            const target = new Date('2026-09-26T00:00:00');
-            const now    = new Date();
-            const diff   = target - now;
-
-            if (diff <= 0) {
-                document.querySelector('.countdown').innerHTML =
-                    '<p style="color:#c9a84c;font-size:1.5rem;letter-spacing:3px">✦ C\'est le grand jour ! ✦</p>';
-                return;
-            }
-
-            const days    = Math.floor(diff / 86400000);
-            const hours   = Math.floor((diff % 86400000) / 3600000);
-            const minutes = Math.floor((diff % 3600000)  / 60000);
-            const seconds = Math.floor((diff % 60000)    / 1000);
-
-            document.getElementById('days').textContent    = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // ── BARRE DE PROGRESSION JUSQU'AU JOUR J ──────────────────────────
-        function updateProgress() {
-            // Date de début : date à laquelle vous avez créé la page (à adapter !)
-            const start  = new Date('2026-03-01T00:00:00');
-            const end    = new Date('2026-09-26T00:00:00');
-            const now    = new Date();
-
-            const total   = end - start;
-            const elapsed = now - start;
-            const pct     = Math.min(100, Math.max(0, Math.round((elapsed / total) * 100)));
-
-            document.getElementById('progressFill').style.width = pct + '%';
-            document.getElementById('progressPct').innerHTML    = pct + '% <span>du chemin parcouru</span>';
-
-            // Petit message qui change selon l'avancement
-            const msgs = [
-                { min: 0,  max: 20,  msg: "L'aventure ne fait que commencer… ✨" },
-                { min: 20, max: 40,  msg: "On se rapproche, doucement mais sûrement 🌿" },
-                { min: 40, max: 60,  msg: "La moitié du chemin est derrière nous 🥂" },
-                { min: 60, max: 80,  msg: "Plus que quelques mois, la fête arrive ! 🎉" },
-                { min: 80, max: 99,  msg: "C'est pour très bientôt… Le cœur s'emballe ! 💛" },
-                { min: 99, max: 100, msg: "C'est le grand jour ! ✦" },
-            ];
-
-            const found = msgs.find(m => pct >= m.min && pct <= m.max);
-            if (found) document.getElementById('progressMsg').textContent = found.msg;
-        }
-
-        updateProgress();
-
-        // ── PARTICULES ─────────────────────────────────────────────────────
-        function createParticles() {
-            const container = document.getElementById('particles');
-            const colors = ['#c9a84c', '#e8c96d', '#b8860b', '#d4af37', '#f0d060'];
-
-            for (let i = 0; i < 55; i++) {
-                const p = document.createElement('div');
-                p.classList.add('particle');
-                p.style.left              = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
-                p.style.animationDelay    = (Math.random() * 10) + 's';
-
-                const size = (Math.random() * 5 + 3) + 'px';
-                p.style.width  = size;
-                p.style.height = size;
-
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                p.style.background = color;
-                p.style.boxShadow  = `0 0 8px ${color}, 0 0 18px ${color}`;
-
-                container.appendChild(p);
-            }
-        }
-
-        createParticles();
-    </script>
-</body>
-</html>
+            0
