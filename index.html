@@ -74,6 +74,39 @@
         }
         .header .date i { color: #c9a84c; -webkit-text-fill-color: #c9a84c; }
 
+        /* PHOTO */
+        .photo-section {
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            margin-bottom: 40px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            box-shadow: 0 8px 40px rgba(201, 168, 76, 0.12);
+            position: relative;
+        }
+        .photo-section img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.45));
+            padding: 30px 24px 20px;
+            color: #fff;
+            text-align: center;
+        }
+        .photo-overlay span {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
         .music-btn {
             position: fixed;
             top: 14px; right: 14px;
@@ -370,6 +403,15 @@
         }
         .lieu-map-btn:hover { background: rgba(201, 168, 76, 0.1); }
 
+        .lieux-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+        @media (max-width: 500px) {
+            .lieux-grid-3 { grid-template-columns: 1fr; }
+        }
+
         .progress-section {
             z-index: 1;
             width: 100%;
@@ -471,6 +513,14 @@
     </div>
 </div>
 
+<!-- PHOTO -->
+<div class="photo-section" style="z-index:1;">
+    <img src="photo.jpg" alt="Mélina & Jordan" />
+    <div class="photo-overlay">
+        <span>Mélina & Jordan · 26 Septembre 2026</span>
+    </div>
+</div>
+
 <!-- BARRE DE PROGRESSION -->
 <div class="progress-section">
     <div class="progress-title">
@@ -540,35 +590,27 @@
     <div class="gold-divider"></div>
     <div class="timeline">
         <div class="timeline-item">
-            <div class="tl-icon"><i class="ph-sun"></i></div>
+            <div class="tl-icon"><i class="ph-scales"></i></div>
             <div class="tl-content">
                 <div class="tl-time">14h00</div>
-                <div class="tl-title">Cérémonie Laïque</div>
-                <div class="tl-desc">Domaine des Cèdres, Salon d'Honneur</div>
+                <div class="tl-title">Cérémonie Civile</div>
+                <div class="tl-desc">Mairie de Bouchamps-lès-Craon (53 800)</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-icon"><i class="ph-church"></i></div>
+            <div class="tl-content">
+                <div class="tl-time">15h00</div>
+                <div class="tl-title">Cérémonie Religieuse</div>
+                <div class="tl-desc">Église Saint-Rémi, Château-Gontier (53 200)</div>
             </div>
         </div>
         <div class="timeline-item">
             <div class="tl-icon"><i class="ph-champagne"></i></div>
             <div class="tl-content">
-                <div class="tl-time">15h30</div>
-                <div class="tl-title">Vin d'Honneur</div>
-                <div class="tl-desc">Jardins et terrasse du domaine</div>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="tl-icon"><i class="ph-fork-knife"></i></div>
-            <div class="tl-content">
-                <div class="tl-time">19h30</div>
-                <div class="tl-title">Dîner de Gala</div>
-                <div class="tl-desc">Grande salle de réception</div>
-            </div>
-        </div>
-        <div class="timeline-item">
-            <div class="tl-icon"><i class="ph-music-notes"></i></div>
-            <div class="tl-content">
-                <div class="tl-time">22h00</div>
-                <div class="tl-title">Soirée & Danse</div>
-                <div class="tl-desc">Jusqu'au bout de la nuit 🎶</div>
+                <div class="tl-time">Après la cérémonie</div>
+                <div class="tl-title">Vin d'Honneur & Dîner</div>
+                <div class="tl-desc">Salle François Dermaut, Livré-la-Touche (53 400)</div>
             </div>
         </div>
     </div>
@@ -579,22 +621,31 @@
     <p class="section-title">Les lieux</p>
     <p class="section-subtitle">Où nous retrouver</p>
     <div class="gold-divider"></div>
-    <div class="lieux-grid">
+    <div class="lieux-grid-3">
         <div class="lieu-card">
-            <div class="lieu-icon"><i class="ph-church"></i></div>
-            <div class="lieu-type">Cérémonie</div>
-            <div class="lieu-name">Domaine des Cèdres</div>
-            <div class="lieu-adresse">123 Route des Vignes<br>84000 Avignon</div>
-            <a class="lieu-map-btn" href="https://maps.google.com/?q=Avignon" target="_blank">
+            <div class="lieu-icon"><i class="ph-bank"></i></div>
+            <div class="lieu-type">Cérémonie Civile</div>
+            <div class="lieu-name">Mairie de Bouchamps-lès-Craon</div>
+            <div class="lieu-adresse">53 800<br>Bouchamps-lès-Craon</div>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Mairie+Bouchamps-lès-Craon" target="_blank">
                 <i class="ph-map-pin"></i> Itinéraire
             </a>
         </div>
         <div class="lieu-card">
-            <div class="lieu-icon"><i class="ph-buildings"></i></div>
-            <div class="lieu-type">Réception</div>
-            <div class="lieu-name">Domaine des Cèdres</div>
-            <div class="lieu-adresse">123 Route des Vignes<br>84000 Avignon</div>
-            <a class="lieu-map-btn" href="https://maps.google.com/?q=Avignon" target="_blank">
+            <div class="lieu-icon"><i class="ph-church"></i></div>
+            <div class="lieu-type">Cérémonie Religieuse</div>
+            <div class="lieu-name">Église Saint-Rémi</div>
+            <div class="lieu-adresse">Château-Gontier<br>53 200</div>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Église+Saint-Rémi+Château-Gontier" target="_blank">
+                <i class="ph-map-pin"></i> Itinéraire
+            </a>
+        </div>
+        <div class="lieu-card">
+            <div class="lieu-icon"><i class="ph-fork-knife"></i></div>
+            <div class="lieu-type">Vin d'honneur & Dîner</div>
+            <div class="lieu-name">Salle François Dermaut</div>
+            <div class="lieu-adresse">Livré-la-Touche<br>53 400</div>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Salle+François+Dermaut+Livré-la-Touche" target="_blank">
                 <i class="ph-map-pin"></i> Itinéraire
             </a>
         </div>
