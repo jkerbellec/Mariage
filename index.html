@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* ── PARTICULES ── */
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         .particle {
             position: absolute;
@@ -38,7 +37,6 @@
             100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
-        /* ── HEADER ── */
         .header { text-align: center; margin-bottom: 40px; z-index: 1; padding: 0 10px; }
         .header .et {
             font-size: clamp(2rem, 8vw, 3.5rem);
@@ -76,7 +74,6 @@
         }
         .header .date i { color: #c9a84c; -webkit-text-fill-color: #c9a84c; }
 
-        /* ── BOUTON MUSIQUE ── */
         .music-btn {
             position: fixed;
             top: 14px; right: 14px;
@@ -112,7 +109,6 @@
         }
         .music-bars.paused span { animation-play-state: paused; }
 
-        /* ── COMPTE À REBOURS ── */
         .countdown {
             display: flex;
             gap: clamp(8px, 3vw, 30px);
@@ -143,7 +139,6 @@
             margin-top: 6px;
         }
 
-        /* ── CARD GÉNÉRIQUE ── */
         .card {
             z-index: 1;
             width: 100%;
@@ -178,7 +173,6 @@
             margin-bottom: 28px;
         }
 
-        /* ── RSVP ── */
         .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .rsvp-btn {
             padding: 13px 22px;
@@ -256,7 +250,6 @@
             margin-top: 20px;
         }
 
-        /* ── PROGRAMME ── */
         .timeline { display: flex; flex-direction: column; gap: 0; }
         .timeline-item {
             display: flex;
@@ -308,7 +301,6 @@
             line-height: 1.6;
         }
 
-        /* ── LIEUX ── */
         .lieux-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -378,7 +370,6 @@
         }
         .lieu-map-btn:hover { background: rgba(201, 168, 76, 0.1); }
 
-        /* ── BARRE DE PROGRESSION ── */
         .progress-section {
             z-index: 1;
             width: 100%;
@@ -421,4 +412,289 @@
             transition: width 1.5s ease;
         }
         @keyframes shimmer {
-            0
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #bbb;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .progress-percent {
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            color: #c9a84c;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            z-index: 1;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            padding-bottom: 40px;
+        }
+        .footer i { color: #c9a84c; }
+    </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+    <div class="music-bars" id="musicBars">
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    Musique
+</button>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="header">
+    <div class="et">
+        <span>Mélina</span>
+        <i class="ph-heart"></i>
+        <span>Jordan</span>
+    </div>
+    <h1>Nous nous marions</h1>
+    <div class="date">
+        <i class="ph-calendar-blank"></i>
+        26 Septembre 2026
+    </div>
+</div>
+
+<!-- BARRE DE PROGRESSION -->
+<div class="progress-section">
+    <div class="progress-title">
+        <i class="ph-hourglass-medium"></i>
+        Progression vers le grand jour
+    </div>
+    <div class="progress-subtitle">Le compte à rebours de notre histoire</div>
+    <div class="progress-percent" id="progressPercent">0%</div>
+    <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+    <div class="progress-labels">
+        <span>Début</span>
+        <span id="progressDaysLeft">— jours restants</span>
+        <span>26 Sept 2026</span>
+    </div>
+</div>
+
+<!-- COMPTE À REBOURS -->
+<div class="countdown">
+    <div class="countdown-item"><span id="days">00</span><p>Jours</p></div>
+    <div class="countdown-item"><span id="hours">00</span><p>Heures</p></div>
+    <div class="countdown-item"><span id="minutes">00</span><p>Minutes</p></div>
+    <div class="countdown-item"><span id="seconds">00</span><p>Secondes</p></div>
+</div>
+
+<!-- RSVP -->
+<div class="card">
+    <p class="section-title">Confirmer votre présence</p>
+    <p class="section-subtitle">Répondez avant le 1er Août 2026</p>
+    <div class="gold-divider"></div>
+
+    <div id="rsvpStep1">
+        <div class="rsvp-buttons">
+            <button class="rsvp-btn" onclick="showRsvp('oui')">
+                <i class="ph-check"></i> Avec joie !
+            </button>
+            <button class="rsvp-btn rsvp-btn-non" onclick="showRsvp('non')">
+                <i class="ph-x"></i> Malheureusement non
+            </button>
+        </div>
+    </div>
+
+    <div id="rsvpOui" style="display:none;">
+        <input class="rsvp-input" type="text" id="nomOui" placeholder="Votre prénom & nom" />
+        <input class="rsvp-input" type="number" id="nbPersonnes" placeholder="Nombre de personnes (vous inclus)" min="1" max="10" />
+        <input class="rsvp-input" type="text" id="regimeOui" placeholder="Régime alimentaire particulier ?" />
+        <input class="rsvp-input" type="text" id="messageOui" placeholder="Un petit mot pour les mariés ? 💛" />
+        <button class="rsvp-submit" onclick="submitRsvp('oui')">Confirmer ma présence</button>
+        <button class="rsvp-submit-non" onclick="backToStep1()" style="margin-top:8px;">← Retour</button>
+    </div>
+
+    <div id="rsvpNon" style="display:none;">
+        <input class="rsvp-input" type="text" id="nomNon" placeholder="Votre prénom & nom" />
+        <input class="rsvp-input" type="text" id="messageNon" placeholder="Un petit mot pour les mariés ? 💛" />
+        <button class="rsvp-submit-non" onclick="submitRsvp('non')">Envoyer</button>
+        <button class="rsvp-submit-non" onclick="backToStep1()" style="margin-top:8px;">← Retour</button>
+    </div>
+
+    <div class="rsvp-confirm" id="rsvpConfirm"></div>
+</div>
+
+<!-- PROGRAMME -->
+<div class="card">
+    <p class="section-title">Programme de la journée</p>
+    <p class="section-subtitle">26 Septembre 2026</p>
+    <div class="gold-divider"></div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="tl-icon"><i class="ph-sun"></i></div>
+            <div class="tl-content">
+                <div class="tl-time">14h00</div>
+                <div class="tl-title">Cérémonie Laïque</div>
+                <div class="tl-desc">Domaine des Cèdres, Salon d'Honneur</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-icon"><i class="ph-champagne"></i></div>
+            <div class="tl-content">
+                <div class="tl-time">15h30</div>
+                <div class="tl-title">Vin d'Honneur</div>
+                <div class="tl-desc">Jardins et terrasse du domaine</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-icon"><i class="ph-fork-knife"></i></div>
+            <div class="tl-content">
+                <div class="tl-time">19h30</div>
+                <div class="tl-title">Dîner de Gala</div>
+                <div class="tl-desc">Grande salle de réception</div>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="tl-icon"><i class="ph-music-notes"></i></div>
+            <div class="tl-content">
+                <div class="tl-time">22h00</div>
+                <div class="tl-title">Soirée & Danse</div>
+                <div class="tl-desc">Jusqu'au bout de la nuit 🎶</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LIEUX -->
+<div class="card">
+    <p class="section-title">Les lieux</p>
+    <p class="section-subtitle">Où nous retrouver</p>
+    <div class="gold-divider"></div>
+    <div class="lieux-grid">
+        <div class="lieu-card">
+            <div class="lieu-icon"><i class="ph-church"></i></div>
+            <div class="lieu-type">Cérémonie</div>
+            <div class="lieu-name">Domaine des Cèdres</div>
+            <div class="lieu-adresse">123 Route des Vignes<br>84000 Avignon</div>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Avignon" target="_blank">
+                <i class="ph-map-pin"></i> Itinéraire
+            </a>
+        </div>
+        <div class="lieu-card">
+            <div class="lieu-icon"><i class="ph-buildings"></i></div>
+            <div class="lieu-type">Réception</div>
+            <div class="lieu-name">Domaine des Cèdres</div>
+            <div class="lieu-adresse">123 Route des Vignes<br>84000 Avignon</div>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Avignon" target="_blank">
+                <i class="ph-map-pin"></i> Itinéraire
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    Mélina <i class="ph-heart"></i> Jordan · 26 Septembre 2026
+</div>
+
+<script>
+    // Particules
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 25; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (6 + Math.random() * 10) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        p.style.width = p.style.height = (3 + Math.random() * 4) + 'px';
+        container.appendChild(p);
+    }
+
+    // Musique
+    let playing = false;
+    function toggleMusic() {
+        const audio = document.getElementById('bgMusic');
+        const bars = document.getElementById('musicBars');
+        if (playing) {
+            audio.pause();
+            bars.classList.add('paused');
+        } else {
+            audio.play().catch(() => {});
+            bars.classList.remove('paused');
+        }
+        playing = !playing;
+    }
+
+    // Compte à rebours
+    function updateCountdown() {
+        const wedding = new Date('2026-09-26T14:00:00');
+        const now = new Date();
+        const diff = wedding - now;
+        if (diff <= 0) {
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            return;
+        }
+        document.getElementById('days').textContent    = String(Math.floor(diff / 86400000)).padStart(2,'0');
+        document.getElementById('hours').textContent   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Barre de progression
+    function updateProgress() {
+        const start = new Date('2025-09-26');
+        const end   = new Date('2026-09-26T14:00:00');
+        const now   = new Date();
+        const total = end - start;
+        const elapsed = now - start;
+        const pct = Math.min(100, Math.max(0, (elapsed / total) * 100));
+        const daysLeft = Math.ceil((end - now) / 86400000);
+        document.getElementById('progressFill').style.width = pct.toFixed(1) + '%';
+        document.getElementById('progressPercent').textContent = pct.toFixed(1) + '%';
+        document.getElementById('progressDaysLeft').textContent = daysLeft + ' jours restants';
+    }
+    updateProgress();
+
+    // RSVP
+    function showRsvp(choice) {
+        document.getElementById('rsvpStep1').style.display = 'none';
+        document.getElementById('rsvpOui').style.display = choice === 'oui' ? 'block' : 'none';
+        document.getElementById('rsvpNon').style.display = choice === 'non' ? 'block' : 'none';
+    }
+    function backToStep1() {
+        document.getElementById('rsvpStep1').style.display = 'block';
+        document.getElementById('rsvpOui').style.display = 'none';
+        document.getElementById('rsvpNon').style.display = 'none';
+    }
+    function submitRsvp(choice) {
+        document.getElementById('rsvpStep1').style.display = 'none';
+        document.getElementById('rsvpOui').style.display = 'none';
+        document.getElementById('rsvpNon').style.display = 'none';
+        const confirm = document.getElementById('rsvpConfirm');
+        confirm.style.display = 'block';
+        if (choice === 'oui') {
+            const nom = document.getElementById('nomOui').value || 'Cher invité';
+            const nb  = document.getElementById('nbPersonnes').value || '1';
+            confirm.innerHTML = `<i class="ph-check-circle" style="font-size:2rem;color:#c9a84c;"></i><br><br>Merci <strong>${nom}</strong> !<br>Votre présence (×${nb}) est confirmée.<br><br>Nous avons hâte de partager ce jour avec vous. 💛`;
+        } else {
+            const nom = document.getElementById('nomNon').value || 'Cher invité';
+            confirm.innerHTML = `<i class="ph-heart" style="font-size:2rem;color:#c9a84c;"></i><br><br>Merci <strong>${nom}</strong> pour votre message.<br>Vous nous manquerez. 💛`;
+        }
+    }
+</script>
+</body>
+</html>
