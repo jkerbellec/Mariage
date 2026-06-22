@@ -7,501 +7,78 @@
     <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: #faf8f5;
-            color: #1a1a1a;
-            font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 16px;
-            overflow-x: hidden;
-        }
-
+        body { background-color: #faf8f5; color: #1a1a1a; font-family: 'Century Gothic', 'Futura', 'Trebuchet MS', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 16px; overflow-x: hidden; }
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .particle {
-            position: absolute;
-            width: 5px; height: 5px;
-            background: #c9a84c;
-            border-radius: 50%;
-            animation: float linear infinite;
-            opacity: 0;
-            box-shadow: 0 0 8px #c9a84c, 0 0 18px #c9a84c;
-        }
-        @keyframes float {
-            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-            10%  { opacity: 1; transform: translateY(90vh) scale(1); }
-            90%  { opacity: 1; }
-            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
-        }
-
-        /* HEADER */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            z-index: 1;
-            padding: 0 10px;
-        }
-        .header .et {
-            font-size: clamp(2rem, 8vw, 3.5rem);
-            font-weight: normal;
-            letter-spacing: 3px;
-            background: linear-gradient(135deg, #c9a84c, #a07830, #c9a84c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .header .et i {
-            font-size: clamp(1.4rem, 5vw, 2rem);
-            -webkit-text-fill-color: #c9a84c;
-        }
-        .header h1 {
-            font-size: clamp(0.7rem, 3vw, 1rem);
-            font-weight: normal;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #999;
-            -webkit-text-fill-color: #999;
-        }
-        .header .date {
-            color: #999;
-            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .header .date i {
-            color: #c9a84c;
-            -webkit-text-fill-color: #c9a84c;
-        }
-
-        /* MUSIQUE */
-        .music-btn {
-            position: fixed;
-            top: 14px; right: 14px;
-            z-index: 100;
-            background: rgba(201, 168, 76, 0.15);
-            border: 1px solid rgba(201, 168, 76, 0.4);
-            border-radius: 50px;
-            padding: 8px 14px;
-            color: #c9a84c;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 1rem;
-            transition: background 0.3s;
-            backdrop-filter: blur(6px);
-        }
+        .particle { position: absolute; width: 5px; height: 5px; background: #c9a84c; border-radius: 50%; animation: float linear infinite; opacity: 0; box-shadow: 0 0 8px #c9a84c, 0 0 18px #c9a84c; }
+        @keyframes float { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 1; transform: translateY(90vh) scale(1); } 90% { opacity: 1; } 100% { transform: translateY(-100px) scale(0.5); opacity: 0; } }
+        .header { text-align: center; margin-bottom: 40px; z-index: 1; padding: 0 10px; }
+        .header .et { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: normal; letter-spacing: 3px; background: linear-gradient(135deg, #c9a84c, #a07830, #c9a84c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .header .et i { font-size: clamp(1.4rem, 5vw, 2rem); -webkit-text-fill-color: #c9a84c; }
+        .header h1 { font-size: clamp(0.7rem, 3vw, 1rem); font-weight: normal; letter-spacing: 4px; text-transform: uppercase; color: #999; -webkit-text-fill-color: #999; }
+        .header .date { color: #999; font-size: clamp(0.7rem, 2.5vw, 0.85rem); letter-spacing: 4px; text-transform: uppercase; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .header .date i { color: #c9a84c; -webkit-text-fill-color: #c9a84c; }
+        .music-btn { position: fixed; top: 14px; right: 14px; z-index: 100; background: rgba(201, 168, 76, 0.15); border: 1px solid rgba(201, 168, 76, 0.4); border-radius: 50px; padding: 8px 14px; color: #c9a84c; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 1rem; transition: background 0.3s; backdrop-filter: blur(6px); }
         .music-btn:hover { background: rgba(201, 168, 76, 0.25); }
         .music-bars { display: flex; align-items: flex-end; gap: 2px; height: 18px; }
-        .music-bars span {
-            display: block; width: 3px;
-            background: #c9a84c; border-radius: 2px;
-            animation: bar 0.6s ease-in-out infinite alternate;
-            animation-play-state: paused;
-        }
-        .music-bars span:nth-child(1) { height: 8px;  animation-delay: 0s; }
+        .music-bars span { display: block; width: 3px; background: #c9a84c; border-radius: 2px; animation: bar 0.6s ease-in-out infinite alternate; animation-play-state: paused; }
+        .music-bars span:nth-child(1) { height: 8px; animation-delay: 0s; }
         .music-bars span:nth-child(2) { height: 16px; animation-delay: 0.2s; }
         .music-bars span:nth-child(3) { height: 10px; animation-delay: 0.4s; }
         .music-bars span:nth-child(4) { height: 18px; animation-delay: 0.1s; }
-        .music-bars span:nth-child(5) { height: 6px;  animation-delay: 0.3s; }
-        @keyframes bar {
-            from { transform: scaleY(0.4); opacity: 0.6; }
-            to   { transform: scaleY(1);   opacity: 1; }
-        }
+        .music-bars span:nth-child(5) { height: 6px; animation-delay: 0.3s; }
+        @keyframes bar { from { transform: scaleY(0.4); opacity: 0.6; } to { transform: scaleY(1); opacity: 1; } }
         .music-bars.playing span { animation-play-state: running; }
-
-        /* COMPTE À REBOURS */
-        .countdown {
-            display: flex;
-            gap: clamp(8px, 3vw, 30px);
-            margin-bottom: 50px;
-            z-index: 1;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .countdown-item {
-            text-align: center;
-            background: rgba(201, 168, 76, 0.08);
-            border: 1px solid rgba(201, 168, 76, 0.25);
-            border-radius: 12px;
-            padding: clamp(12px, 3vw, 20px) clamp(14px, 4vw, 25px);
-            min-width: clamp(60px, 18vw, 80px);
-        }
-        .countdown-item span {
-            display: block;
-            font-size: clamp(1.6rem, 6vw, 2.5rem);
-            color: #c9a84c;
-            font-weight: bold;
-        }
-        .countdown-item p {
-            font-size: clamp(0.55rem, 2vw, 0.7rem);
-            color: #aaa;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 6px;
-        }
-
-        /* CARDS */
-        .card {
-            z-index: 1;
-            width: 100%;
-            max-width: 520px;
-            background: #fff;
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            border-radius: 16px;
-            padding: clamp(24px, 6vw, 40px);
-            box-shadow: 0 4px 30px rgba(201, 168, 76, 0.08);
-            margin-bottom: 40px;
-            overflow: hidden;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
-            font-weight: normal;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: #c9a84c;
-            margin-bottom: 8px;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: #aaa;
-            font-size: clamp(0.75rem, 2.5vw, 0.85rem);
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-        .gold-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
-            margin-bottom: 28px;
-        }
-
-        /* RSVP */
+        .countdown { display: flex; gap: clamp(8px, 3vw, 30px); margin-bottom: 50px; z-index: 1; flex-wrap: wrap; justify-content: center; }
+        .countdown-item { text-align: center; background: rgba(201, 168, 76, 0.08); border: 1px solid rgba(201, 168, 76, 0.25); border-radius: 12px; padding: clamp(12px, 3vw, 20px) clamp(14px, 4vw, 25px); min-width: clamp(60px, 18vw, 80px); }
+        .countdown-item span { display: block; font-size: clamp(1.6rem, 6vw, 2.5rem); color: #c9a84c; font-weight: bold; }
+        .countdown-item p { font-size: clamp(0.55rem, 2vw, 0.7rem); color: #aaa; letter-spacing: 2px; text-transform: uppercase; margin-top: 6px; }
+        .card { z-index: 1; width: 100%; max-width: 520px; background: #fff; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 16px; padding: clamp(24px, 6vw, 40px); box-shadow: 0 4px 30px rgba(201, 168, 76, 0.08); margin-bottom: 40px; overflow: hidden; }
+        .section-title { text-align: center; font-size: clamp(0.7rem, 2.5vw, 0.85rem); font-weight: normal; letter-spacing: 6px; text-transform: uppercase; color: #c9a84c; margin-bottom: 8px; }
+        .section-subtitle { text-align: center; color: #aaa; font-size: clamp(0.75rem, 2.5vw, 0.85rem); letter-spacing: 2px; margin-bottom: 20px; }
+        .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent); margin-bottom: 28px; }
         .rsvp-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .rsvp-btn {
-            padding: 13px 22px;
-            border-radius: 6px;
-            border: 1px solid rgba(201, 168, 76, 0.5);
-            background: transparent;
-            color: #c9a84c;
-            font-family: inherit;
-            font-size: clamp(0.65rem, 2.5vw, 0.8rem);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex: 1;
-            min-width: 140px;
-        }
+        .rsvp-btn { padding: 13px 22px; border-radius: 6px; border: 1px solid rgba(201, 168, 76, 0.5); background: transparent; color: #c9a84c; font-family: inherit; font-size: clamp(0.65rem, 2.5vw, 0.8rem); letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; flex: 1; min-width: 140px; }
         .rsvp-btn:hover { background: rgba(201, 168, 76, 0.1); }
         .rsvp-btn-non { border-color: #ddd; color: #aaa; }
-        .rsvp-input {
-            width: 100%;
-            padding: 13px;
-            margin-bottom: 10px;
-            background: #f8f5f0;
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            border-radius: 6px;
-            color: #1a1a1a;
-            font-family: inherit;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            outline: none;
-            transition: border 0.3s;
-            margin-top: 12px;
-        }
+        .rsvp-input { width: 100%; padding: 13px; margin-bottom: 10px; background: #f8f5f0; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 6px; color: #1a1a1a; font-family: inherit; font-size: 0.85rem; letter-spacing: 1px; outline: none; transition: border 0.3s; margin-top: 12px; }
         .rsvp-input:focus { border-color: rgba(201, 168, 76, 0.6); }
         .rsvp-input::placeholder { color: #bbb; }
-        .rsvp-submit {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #c9a84c, #a07830);
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-family: inherit;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            margin-top: 10px;
-        }
+        .rsvp-submit { width: 100%; padding: 14px; background: linear-gradient(135deg, #c9a84c, #a07830); border: none; border-radius: 6px; color: #fff; font-family: inherit; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; margin-top: 10px; }
         .rsvp-submit:hover { opacity: 0.85; }
-        .rsvp-submit-non {
-            width: 100%;
-            padding: 14px;
-            background: transparent;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            color: #aaa;
-            font-family: inherit;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
+        .rsvp-submit-non { width: 100%; padding: 14px; background: transparent; border: 1px solid #ddd; border-radius: 6px; color: #aaa; font-family: inherit; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; margin-top: 10px; }
         .rsvp-submit-non:hover { border-color: #bbb; color: #888; }
-        .rsvp-confirm {
-            display: none;
-            text-align: center;
-            color: #c9a84c;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            line-height: 2;
-            margin-top: 20px;
-        }
-
-        /* TIMELINE */
+        .rsvp-confirm { display: none; text-align: center; color: #c9a84c; font-size: 0.85rem; letter-spacing: 2px; line-height: 2; margin-top: 20px; }
         .timeline { display: flex; flex-direction: column; gap: 0; }
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-            position: relative;
-        }
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 19px;
-            top: 42px;
-            width: 1px;
-            height: calc(100% + 4px);
-            background: linear-gradient(to bottom, rgba(201,168,76,0.4), rgba(201,168,76,0.1));
-        }
-        .tl-icon {
-            width: 40px;
-            height: 40px;
-            min-width: 40px;
-            border-radius: 50%;
-            background: rgba(201, 168, 76, 0.1);
-            border: 1px solid rgba(201, 168, 76, 0.35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #c9a84c;
-            font-size: 1.1rem;
-            z-index: 1;
-        }
+        .timeline-item { display: flex; gap: 20px; align-items: flex-start; position: relative; }
+        .timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 42px; width: 1px; height: calc(100% + 4px); background: linear-gradient(to bottom, rgba(201,168,76,0.4), rgba(201,168,76,0.1)); }
+        .tl-icon { width: 40px; height: 40px; min-width: 40px; border-radius: 50%; background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.35); display: flex; align-items: center; justify-content: center; color: #c9a84c; font-size: 1.1rem; z-index: 1; }
         .tl-content { padding-bottom: 28px; flex: 1; }
-        .tl-time {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            color: #c9a84c;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-        .tl-title {
-            font-size: clamp(0.85rem, 3vw, 0.95rem);
-            color: #1a1a1a;
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-        .tl-desc {
-            font-size: 0.78rem;
-            color: #aaa;
-            letter-spacing: 1px;
-            line-height: 1.6;
-        }
-
-        /* LIEUX */
-        .lieux-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            width: 100%;
-        }
-        @media (max-width: 600px) {
-            .lieux-grid-3 { grid-template-columns: 1fr; }
-        }
-        .lieu-card {
-            background: #faf8f5;
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            border-radius: 12px;
-            padding: 16px 12px;
-            text-align: center;
-            transition: border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .tl-time { font-size: 0.7rem; letter-spacing: 3px; color: #c9a84c; text-transform: uppercase; margin-bottom: 4px; }
+        .tl-title { font-size: clamp(0.85rem, 3vw, 0.95rem); color: #1a1a1a; letter-spacing: 1px; margin-bottom: 4px; }
+        .tl-desc { font-size: 0.78rem; color: #aaa; letter-spacing: 1px; line-height: 1.6; }
+        .lieux-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
+        @media (max-width: 600px) { .lieux-grid-3 { grid-template-columns: 1fr; } }
+        .lieu-card { background: #faf8f5; border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 12px; padding: 16px 12px; text-align: center; transition: border-color 0.3s; display: flex; flex-direction: column; align-items: center; }
         .lieu-card:hover { border-color: rgba(201, 168, 76, 0.5); }
-        .lieu-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(201, 168, 76, 0.1);
-            border: 1px solid rgba(201, 168, 76, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 10px;
-            color: #c9a84c;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        .lieu-type {
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            color: #c9a84c;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-        .lieu-name {
-            font-size: 0.82rem;
-            color: #1a1a1a;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-        .lieu-adresse {
-            font-size: 0.72rem;
-            color: #aaa;
-            line-height: 1.5;
-            margin-bottom: 12px;
-        }
-        .lieu-map-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 7px 12px;
-            border-radius: 50px;
-            border: 1px solid rgba(201, 168, 76, 0.4);
-            background: transparent;
-            color: #c9a84c;
-            font-family: inherit;
-            font-size: 0.65rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: auto;
-        }
+        .lieu-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; color: #c9a84c; font-size: 1.2rem; flex-shrink: 0; }
+        .lieu-type { font-size: 0.6rem; letter-spacing: 2px; color: #c9a84c; text-transform: uppercase; margin-bottom: 6px; line-height: 1.4; }
+        .lieu-name { font-size: 0.82rem; color: #1a1a1a; letter-spacing: 0.5px; margin-bottom: 6px; line-height: 1.4; }
+        .lieu-adresse { font-size: 0.72rem; color: #aaa; line-height: 1.5; margin-bottom: 12px; }
+        .lieu-map-btn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 12px; border-radius: 50px; border: 1px solid rgba(201, 168, 76, 0.4); background: transparent; color: #c9a84c; font-family: inherit; font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: all 0.3s; margin-top: auto; }
         .lieu-map-btn:hover { background: rgba(201, 168, 76, 0.1); }
-
-        /* PROGRESSION */
-        .progress-section {
-            z-index: 1;
-            width: 100%;
-            max-width: 520px;
-            margin-bottom: 50px;
-            text-align: center;
-            padding: 0 4px;
-        }
-        .progress-title {
-            font-size: clamp(0.7rem, 2.5vw, 0.8rem);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #c9a84c;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .progress-subtitle {
-            font-size: 0.78rem;
-            color: #bbb;
-            letter-spacing: 2px;
-            margin-bottom: 18px;
-        }
-        .progress-track {
-            background: rgba(201, 168, 76, 0.1);
-            border: 1px solid rgba(201, 168, 76, 0.2);
-            border-radius: 50px;
-            height: 10px;
-            overflow: hidden;
-            margin-bottom: 12px;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #c9a84c, #f5e6c8, #c9a84c);
-            background-size: 200% 100%;
-            border-radius: 50px;
-            animation: shimmer 2.5s linear infinite;
-            transition: width 1.5s ease;
-        }
-        @keyframes shimmer {
-            0%   { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            color: #bbb;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .progress-percent {
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            color: #c9a84c;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        /* PHOTO BAS DE PAGE */
-        .photo-section {
-            z-index: 1;
-            width: 100%;
-            max-width: 520px;
-            margin-bottom: 40px;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(201, 168, 76, 0.25);
-            box-shadow: 0 8px 40px rgba(201, 168, 76, 0.12);
-            position: relative;
-        }
-        .photo-section img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            display: block;
-        }
-        .photo-overlay {
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.5));
-            padding: 40px 24px 22px;
-            color: #fff;
-            text-align: center;
-        }
-        .photo-overlay span {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            opacity: 0.9;
-        }
-
-        /* FOOTER */
-        .footer {
-            z-index: 1;
-            text-align: center;
-            color: #ccc;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-top: 10px;
-            padding-bottom: 40px;
-        }
+        .progress-section { z-index: 1; width: 100%; max-width: 520px; margin-bottom: 50px; text-align: center; padding: 0 4px; }
+        .progress-title { font-size: clamp(0.7rem, 2.5vw, 0.8rem); letter-spacing: 4px; text-transform: uppercase; color: #c9a84c; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .progress-subtitle { font-size: 0.78rem; color: #bbb; letter-spacing: 2px; margin-bottom: 18px; }
+        .progress-track { background: rgba(201, 168, 76, 0.1); border: 1px solid rgba(201, 168, 76, 0.2); border-radius: 50px; height: 10px; overflow: hidden; margin-bottom: 12px; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #c9a84c, #f5e6c8, #c9a84c); background-size: 200% 100%; border-radius: 50px; animation: shimmer 2.5s linear infinite; transition: width 1.5s ease; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .progress-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: #bbb; letter-spacing: 2px; text-transform: uppercase; }
+        .progress-percent { font-size: clamp(1.2rem, 4vw, 1.6rem); color: #c9a84c; font-weight: bold; margin-bottom: 4px; }
+        .photo-section { z-index: 1; width: 100%; max-width: 520px; margin-bottom: 40px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(201, 168, 76, 0.25); box-shadow: 0 8px 40px rgba(201, 168, 76, 0.12); position: relative; }
+        .photo-section img { width: 100%; height: 380px; object-fit: cover; display: block; }
+        .photo-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.5)); padding: 40px 24px 22px; color: #fff; text-align: center; }
+        .photo-overlay span { font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.9; }
+        .footer { z-index: 1; text-align: center; color: #ccc; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; padding-bottom: 40px; }
         .footer i { color: #c9a84c; }
     </style>
 </head>
@@ -565,18 +142,12 @@
     <p class="section-title">Confirmer votre présence</p>
     <p class="section-subtitle">Répondez avant le 1er Août 2026</p>
     <div class="gold-divider"></div>
-
     <div id="rsvpStep1">
         <div class="rsvp-buttons">
-            <button class="rsvp-btn" onclick="showRsvp('oui')">
-                <i class="ph-check"></i> Avec joie !
-            </button>
-            <button class="rsvp-btn rsvp-btn-non" onclick="showRsvp('non')">
-                <i class="ph-x"></i> Malheureusement non
-            </button>
+            <button class="rsvp-btn" onclick="showRsvp('oui')"><i class="ph-check"></i> Avec joie !</button>
+            <button class="rsvp-btn rsvp-btn-non" onclick="showRsvp('non')"><i class="ph-x"></i> Malheureusement non</button>
         </div>
     </div>
-
     <div id="rsvpOui" style="display:none;">
         <input class="rsvp-input" type="text" id="nomOui" placeholder="Votre prénom & nom" />
         <input class="rsvp-input" type="number" id="nbPersonnes" placeholder="Nombre de personnes (vous inclus)" min="1" max="10" />
@@ -585,14 +156,12 @@
         <button class="rsvp-submit" onclick="submitRsvp('oui')">Confirmer ma présence</button>
         <button class="rsvp-submit-non" onclick="backToStep1()" style="margin-top:8px;">← Retour</button>
     </div>
-
     <div id="rsvpNon" style="display:none;">
         <input class="rsvp-input" type="text" id="nomNon" placeholder="Votre prénom & nom" />
         <input class="rsvp-input" type="text" id="messageNon" placeholder="Un petit mot pour les mariés ? 💛" />
         <button class="rsvp-submit-non" onclick="submitRsvp('non')">Envoyer</button>
         <button class="rsvp-submit-non" onclick="backToStep1()" style="margin-top:8px;">← Retour</button>
     </div>
-
     <div class="rsvp-confirm" id="rsvpConfirm"></div>
 </div>
 
@@ -640,27 +209,21 @@
             <div class="lieu-type">Cérémonie Civile</div>
             <div class="lieu-name">Mairie de Bouchamps-lès-Craon</div>
             <div class="lieu-adresse">53 800<br>Bouchamps-lès-Craon</div>
-            <a class="lieu-map-btn" href="https://maps.google.com/?q=Mairie+Bouchamps-lès-Craon" target="_blank">
-                <i class="ph-map-pin"></i> Itinéraire
-            </a>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Mairie+Bouchamps-lès-Craon" target="_blank"><i class="ph-map-pin"></i> Itinéraire</a>
         </div>
         <div class="lieu-card">
             <div class="lieu-icon"><i class="ph-church"></i></div>
             <div class="lieu-type">Cérémonie Religieuse</div>
             <div class="lieu-name">Église Saint-Rémi</div>
             <div class="lieu-adresse">Château-Gontier<br>53 200</div>
-            <a class="lieu-map-btn" href="https://maps.google.com/?q=Église+Saint-Rémi+Château-Gontier" target="_blank">
-                <i class="ph-map-pin"></i> Itinéraire
-            </a>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Église+Saint-Rémi+Château-Gontier" target="_blank"><i class="ph-map-pin"></i> Itinéraire</a>
         </div>
         <div class="lieu-card">
             <div class="lieu-icon"><i class="ph-fork-knife"></i></div>
             <div class="lieu-type">Vin d'honneur & Dîner</div>
             <div class="lieu-name">Salle François Dermaut</div>
             <div class="lieu-adresse">Livré-la-Touche<br>53 400</div>
-            <a class="lieu-map-btn" href="https://maps.google.com/?q=Salle+François+Dermaut+Livré-la-Touche" target="_blank">
-                <i class="ph-map-pin"></i> Itinéraire
-            </a>
+            <a class="lieu-map-btn" href="https://maps.google.com/?q=Salle+François+Dermaut+Livré-la-Touche" target="_blank"><i class="ph-map-pin"></i> Itinéraire</a>
         </div>
     </div>
 </div>
@@ -679,6 +242,9 @@
 </div>
 
 <script>
+    // ✅ URL Google Sheets
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwMhwIHP-bUlqEyBdwknsXtXjvPWNi5yTnkM4IzQfCVEVKs-oeOgrQKFzGnRaxEU4FK/exec";
+
     // Particules
     const container = document.getElementById('particles');
     for (let i = 0; i < 25; i++) {
@@ -696,13 +262,8 @@
     function toggleMusic() {
         const audio = document.getElementById('bgMusic');
         const bars = document.getElementById('musicBars');
-        if (playing) {
-            audio.pause();
-            bars.classList.remove('playing');
-        } else {
-            audio.play().catch(() => {});
-            bars.classList.add('playing');
-        }
+        if (playing) { audio.pause(); bars.classList.remove('playing'); }
+        else { audio.play().catch(() => {}); bars.classList.add('playing'); }
         playing = !playing;
     }
 
@@ -712,10 +273,7 @@
         const now = new Date();
         const diff = wedding - now;
         if (diff <= 0) {
-            document.getElementById('days').textContent = '00';
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
+            ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '00');
             return;
         }
         document.getElementById('days').textContent    = String(Math.floor(diff / 86400000)).padStart(2,'0');
@@ -731,9 +289,7 @@
         const start = new Date('2025-09-26');
         const end   = new Date('2026-09-26T14:00:00');
         const now   = new Date();
-        const total = end - start;
-        const elapsed = now - start;
-        const pct = Math.min(100, Math.max(0, (elapsed / total) * 100));
+        const pct = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
         const daysLeft = Math.ceil((end - now) / 86400000);
         document.getElementById('progressFill').style.width = pct.toFixed(1) + '%';
         document.getElementById('progressPercent').textContent = pct.toFixed(1) + '%';
@@ -752,19 +308,50 @@
         document.getElementById('rsvpOui').style.display = 'none';
         document.getElementById('rsvpNon').style.display = 'none';
     }
+
     function submitRsvp(choice) {
         document.getElementById('rsvpStep1').style.display = 'none';
         document.getElementById('rsvpOui').style.display = 'none';
         document.getElementById('rsvpNon').style.display = 'none';
+
+        // ✅ Envoi vers Google Sheets
+        let data = {};
+        if (choice === 'oui') {
+            data = {
+                nom:     document.getElementById('nomOui').value || '',
+                reponse: 'oui',
+                nb:      document.getElementById('nbPersonnes').value || '1',
+                regime:  document.getElementById('regimeOui').value || '',
+                message: document.getElementById('messageOui').value || ''
+            };
+        } else {
+            data = {
+                nom:     document.getElementById('nomNon').value || '',
+                reponse: 'non',
+                nb:      '0',
+                regime:  '',
+                message: document.getElementById('messageNon').value || ''
+            };
+        }
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(res => res.json())
+        .then(res => console.log("✅ Envoyé", res))
+        .catch(err => console.error("❌ Erreur", err));
+
+        // Message de confirmation
         const confirm = document.getElementById('rsvpConfirm');
         confirm.style.display = 'block';
         if (choice === 'oui') {
             const nom = document.getElementById('nomOui').value || 'Cher invité';
             const nb  = document.getElementById('nbPersonnes').value || '1';
-            confirm.innerHTML = `<i class="ph-check-circle" style="font-size:2rem;color:#c9a84c;"></i><br><br>Merci <strong>${nom}</strong> !<br>Votre présence (×${nb}) est confirmée.<br><br>Nous avons hâte de partager ce jour avec vous. 💛`;
+            confirm.innerHTML = '<i class="ph-check-circle" style="font-size:2rem;color:#c9a84c;"></i><br><br>Merci <strong>' + nom + '</strong> !<br>Votre présence (×' + nb + ') est confirmée.<br><br>Nous avons hâte de partager ce jour avec vous. 💛';
         } else {
             const nom = document.getElementById('nomNon').value || 'Cher invité';
-            confirm.innerHTML = `<i class="ph-heart" style="font-size:2rem;color:#c9a84c;"></i><br><br>Merci <strong>${nom}</strong> pour votre message.<br>Vous nous manquerez. 💛`;
+            confirm.innerHTML = '<i class="ph-heart" style="font-size:2rem;color:#c9a84c;"></i><br><br>Merci <strong>' + nom + '</strong> pour votre message.<br>Vous nous manquerez. 💛';
         }
     }
 </script>
